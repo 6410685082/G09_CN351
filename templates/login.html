@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+</head>
+<body>
+
+    <h2>Log-in page</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+        <label for="remember_me">Remember Me</label>
+        <input type="checkbox" name="remember_me" id="remember_me">
+        <button type="submit">Login</button>
+    </form>
+    <hr>
+
+    <h3>For hacking kub.</h3>
+    <ul>
+        <li><a href="{% url 'account_recovery' %}">Account Recovery</a></li>
+        <li><a href="{% url 'insecure_storage' %}">Same password in storage</a></li>
+    </ul>
+
+</body>
+</html>
