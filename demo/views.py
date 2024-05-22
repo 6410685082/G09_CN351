@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .models import UserProfile, RememberMeToken
+from .models import UserProfile, RememberMeToken, Comment
+from .forms import CommentForm
 import hashlib
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.decorators import login_required
@@ -48,3 +49,17 @@ def home(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def add_comment(request):
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('show_comments')
+    else:
+        form = CommentForm()
+    return render(request, 'add_comment.html', {'form': form})
+
+def show_comments(request):
+    comments = Comment.objects.all()
+    return render(request, 'show_comments.html', {'comments': comments})

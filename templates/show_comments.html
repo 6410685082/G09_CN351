@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comments</title>
+</head>
+<body>
+    <h1>Comments</h1>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.text|safe }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_comment' %}">Add Another Comment</a>
+    <a href="{% url 'login' %}">Back to login</a>
+</body>
+</html>
